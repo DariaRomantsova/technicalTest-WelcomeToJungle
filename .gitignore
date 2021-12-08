@@ -1,0 +1,14 @@
+*.log
+/build/
+/bin/
+
+/node_modules/
+
+# phpstorm
+/.idea/*
+!/.idea/codeStyleSettings.xml
+!/.idea/encodings.xml
+
+/www/.env
+
+
