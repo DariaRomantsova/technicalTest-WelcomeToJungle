@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { normalize } from '../mapper';
 
 const initialState = {
-  itemsById: {0:0},
+  itemsById: {},
   itemsIds: [],
   errors: {},
   isLoading: false,
