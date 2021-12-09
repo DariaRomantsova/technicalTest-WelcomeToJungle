@@ -1,17 +1,24 @@
 import { createSelector } from '@reduxjs/toolkit';
+import {  JobId, LooseObject } from '../../helpers/types';
+import { RootState } from '../root';
 
-import { AppState } from "../root/rootReducer";
-
-export const selectStoresItemsById = (state: any) => state.jobs.itemsById;
-export const selectStoresItemsIds = (state: any) => state.jobs.itemsIds;
+export const selectStoresItemsById = (state: RootState):LooseObject => state.jobs.itemsById;
+export const selectStoresItemsIds = (state: RootState):Array<any> => state.jobs.itemsIds;
 
 
-export const selectStoresTableIsLoading = (state: any) => state.jobs.isLoading();
+export const selectStoresTableIsLoading = (state: RootState):boolean => state.jobs.isLoading;
 
 export const selectJobsItems = createSelector(
   selectStoresItemsById,
   selectStoresItemsIds,
-  (itemsById, itemsIds) => itemsIds.map((id:number) => itemsById[id]),
+  (itemsById, itemsIds) => itemsIds.map((id: JobId) => itemsById[id]),
+);
+export const selectSelectedJob = (state: RootState):JobId => state.jobs.selectedJob;
+
+//export const selectJobById = (state: RootState, id: JobId):any => id && state.jobs.itemsById[id];
+export const selectJobById = createSelector(
+  selectStoresItemsById,
+  selectSelectedJob,
+  (itemsById, selectedJob) => selectedJob && itemsById[selectedJob],
 );
 
-export const selectJobById = (state:any, id:number) => id && state.jobs.itemsById[id];

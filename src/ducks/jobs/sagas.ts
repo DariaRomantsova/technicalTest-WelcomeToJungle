@@ -1,12 +1,11 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, ForkEffect, put, takeLatest } from 'redux-saga/effects';
 
 import { jobsSlice } from '../jobs';
 import { getJobsList } from './services';
-//import { normalize } from 'ducks/mapper';
 
-function* getStoresListSaga():any {
+function* getStoresListSaga() {
   try {
-    const {data} = yield call(getJobsList);
+    const { data } = yield call(getJobsList);
     yield put(
       jobsSlice.actions.getJobsListSuccess(data),
     );
@@ -15,7 +14,6 @@ function* getStoresListSaga():any {
   }
 }
 
-
-export function* watchJobs() {
+export function* watchJobs(): Generator<ForkEffect<never>, void, unknown> {
   yield takeLatest(jobsSlice.actions.getJobsList, getStoresListSaga);
 }

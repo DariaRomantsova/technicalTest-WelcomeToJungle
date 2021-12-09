@@ -2,11 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { normalize } from '../mapper';
 
 const initialState = {
-  itemsById: {},
+  itemsById: {0:0},
   itemsIds: [],
   errors: {},
   isLoading: false,
-  name:''
+  name: '',
+  selectedJob: 0,
 };
 
 export const jobsSlice = createSlice({
@@ -16,15 +17,19 @@ export const jobsSlice = createSlice({
     getJobsList: (state) => {
       state.isLoading = true;
     },
-    getJobsListSuccess: (state,  {payload:{jobs,name}}) => {
+    getJobsListSuccess: (state, { payload: { jobs, name } }) => {
       const { byId, allIds } = normalize(jobs);
-      state.name=name;
+      state.name = name;
       state.isLoading = false;
       state.itemsById = byId;
       state.itemsIds = allIds;
     },
-    getJobsListFailed: (state, action) => {
+    getJobsListFailed: (state, { payload: { error } }) => {
       state.isLoading = false;
+      state.errors = error;
     },
+    setSelectedJob: (state, { payload: { jobId } }) => {
+      state.selectedJob = jobId;
+    }
   },
 });
