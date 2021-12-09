@@ -12,7 +12,7 @@ interface ApplyButtonProps {
 export const ApplyButton = React.memo(({ urls }: ApplyButtonProps) => {
     const url = urls.find((item: WebsiteReference) => item.website_reference === "wttj_fr");
     return (
-        <Button as="a" href={url?.url}>
+        <Button as="a" href={url?.url} >
             Apply
         </Button>
     )

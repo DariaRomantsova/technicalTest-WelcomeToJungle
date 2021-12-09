@@ -13,8 +13,9 @@ import { FormInputs, Job } from "../../helpers/types";
 import { ModalContainer } from "./ModalContainer";
 import { filterJobs } from "../../helpers/jobsFilter";
 import { JobCard } from "../common/JobCard";
+import { theme } from "../../helpers/theme";
 
-const theme = createTheme()
+const currentTheme = createTheme(theme);
 
 export const Container = (): ReactElement => {
     const jobs = useSelector(selectJobsItems);
@@ -44,7 +45,7 @@ export const Container = (): ReactElement => {
     }, [jobs]);
 
     return (
-        <WuiProvider theme={theme}>
+        <WuiProvider theme={currentTheme}>
             <Box display='flex' flexDirection='column' alignItems='center'>
                 <SearchBar onSubmit={handleSubmit} />
                 {filterdJobs.map((job: Job) => (
