@@ -1,19 +1,35 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import React from "react";
-// @ts-ignore
-import { Select } from '@welcome-ui/select'
-// @ts-ignore
+import React, { useCallback } from "react";
+import { Select } from '@welcome-ui/select';
 import { Field } from '@welcome-ui/field';
-// @ts-ignore
 import { InputText } from '@welcome-ui/input-text';
-import { GROUP } from '../../constants/constants';
-import { Controller } from "react-hook-form";
+import { Controller, SubmitHandler } from "react-hook-form";
 
-export const SearchForm = React.memo(({ register, setValue, handleSubmit, onSubmit }: any) => {
-  const handleChange = (e: string) => {
-    setValue('groupBy', e);
-    handleSubmit(onSubmit)();
-  }
+import { GROUP } from '../../constants/constants';
+import { FormInputs, GroupTypes, LooseObject } from "../../helpers/types";
+
+interface Event<T> {
+  target: EventTarget & T;
+}
+
+interface TargetParams {
+  name: string;
+  value: string;
+}
+
+interface SearchFormProps {
+  register?: (name: string) => LooseObject;
+  setValue?: (name: string, value: unknown) => void;
+  handleSubmit?: any;
+  onSubmit: SubmitHandler<FormInputs>;
+}
+
+export const SearchForm: React.FC<SearchFormProps> = ({ register, setValue, handleSubmit, onSubmit }) => {
+
+  const handleChange = useCallback((e: GroupTypes) => {
+    setValue?.('groupBy', e);
+    handleSubmit?.(onSubmit)();
+  }, [])
+
   return (
     <>
       <Field
@@ -22,11 +38,12 @@ export const SearchForm = React.memo(({ register, setValue, handleSubmit, onSubm
         name='name'
         placeholder='Your dream job?'
         maxWidth={300}
-        {...register('name')}
-        onChange={(e: any) => {
-          setValue(e.target.name, e.target.value)
-          handleSubmit(onSubmit)();
-        }}
+        {...register?.('name')}
+        onChange={useCallback((e: Event<TargetParams>) => {
+          console.log(e)
+          setValue?.(e.target.name, e.target.value)
+          handleSubmit?.(onSubmit)();
+        }, [])}
       />
       <Controller
         name='groupBy'
@@ -36,7 +53,7 @@ export const SearchForm = React.memo(({ register, setValue, handleSubmit, onSubm
               component={Select}
               placeholder='Group by'
               name={name}
-              {...register('groupBy')}
+              {...register?.('groupBy')}
               options={GROUP}
               onChange={handleChange}
               value={value}
@@ -46,5 +63,5 @@ export const SearchForm = React.memo(({ register, setValue, handleSubmit, onSubm
       />
     </>
   )
-})
-SearchForm.displayName = 'SearchForm';
+}
+export default React.memo(SearchForm)

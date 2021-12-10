@@ -1,13 +1,12 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import './App.css';
-import { Container } from './components/containers/Container';
+import { Jobs } from './containers/Jobs';
 
-function App():ReactElement {
-  return (
-    <div className="App">
-      <Container />
-    </div>
-  );
-}
+const App: React.FC = () => (
+  <div className="App">
+    <Jobs />
+  </div>
+);
+
 
 export default App;

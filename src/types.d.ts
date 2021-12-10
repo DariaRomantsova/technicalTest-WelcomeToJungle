@@ -1,0 +1,12 @@
+declare module '@welcome-ui/text';
+declare module '@welcome-ui/button';
+declare module '@welcome-ui/box';
+declare module '@welcome-ui/modal';
+declare module '@welcome-ui/icons.information';
+declare module '@welcome-ui/icons.office';
+declare module '@welcome-ui/icons.contract';
+declare module '@welcome-ui/card';
+declare module '@welcome-ui/field';
+declare module '@welcome-ui/select';
+declare module '@welcome-ui/input-text';
+declare module '@welcome-ui/core';

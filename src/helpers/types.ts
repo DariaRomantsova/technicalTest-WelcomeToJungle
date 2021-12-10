@@ -45,7 +45,7 @@ export type Job = {
   name: string;
   profile: string;
   description: string;
-  cms_sites_references: Array<string>;
+  cms_sites_references: string[];
   contract_type: Locales;
   created_at: Locales;
   department: Department;
@@ -55,7 +55,7 @@ export type Job = {
   reference: string;
   salary: Salary;
   slug: string;
-  websites_urls: Array<WebsiteReference>
+  websites_urls: WebsiteReference[]
 };
 
 export type GroupTypes = 'none' | 'department.name' | 'office.name'
@@ -66,5 +66,5 @@ export type FormInputs = {
 };
 
 export type JobCollection = {
-  [key: string]: Array<Job>
+  [key: string]: Job[]
 };

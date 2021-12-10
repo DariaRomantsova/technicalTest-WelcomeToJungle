@@ -1,9 +1,8 @@
 import React, { cloneElement, ReactElement } from 'react';
 import { FormProvider, useForm, SubmitHandler } from 'react-hook-form';
-import { FormInputs } from '../../helpers/types';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { Box } from '@welcome-ui/box';
+
+import { FormInputs } from '../../helpers/types';
 
 interface FormInterface {
   children: ReactElement;
@@ -11,7 +10,7 @@ interface FormInterface {
   onSubmit: SubmitHandler<FormInputs>;
 }
 
-export const Form = React.memo(({ children, defaultValues, onSubmit }: FormInterface) => {
+export const Form: React.FC<FormInterface> = ({ children, defaultValues, onSubmit }) => {
   const formMethods = useForm<FormInputs>({
     defaultValues,
     mode: 'onChange',
@@ -26,13 +25,12 @@ export const Form = React.memo(({ children, defaultValues, onSubmit }: FormInter
             register,
             setValue,
             handleSubmit,
-            onSubmit,
             ...children.props
           })}
         </Box>
       </form>
     </FormProvider>
   )
-})
+}
 
-Form.displayName = 'Form';
+export default React.memo(Form)
