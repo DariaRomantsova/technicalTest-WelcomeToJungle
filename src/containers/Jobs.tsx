@@ -6,17 +6,18 @@ import { Box } from '@welcome-ui/box'
 // @ts-ignore
 import { useModalState } from '@welcome-ui/modal';
 import { useDispatch, useSelector } from "react-redux";
-import { actions, selectJobsItems } from "../ducks/jobs";
+import { actions, selectIsLoading, selectJobsItems } from "../ducks/jobs";
 
 import { SearchBar } from "../components/common/SearchBar";
 import { FormInputs, Job } from "../helpers/types";
 import { ModalContainer } from "./ModalContainer";
 import { filterJobs } from "../helpers/jobsFilter";
 import { JobCard } from "../components/common/JobCard";
-
+import { Loader } from '@welcome-ui/loader'
 
 export const Jobs: React.FC = () => {
     const jobs = useSelector(selectJobsItems);
+    const isLoading = useSelector(selectIsLoading);
     const dispatch = useDispatch();
     const modal = useModalState();
     const [params, setParams] = useState<FormInputs>({
@@ -45,9 +46,13 @@ export const Jobs: React.FC = () => {
     return (
         <Box display='flex' flexDirection='column' alignItems='center'>
             <SearchBar onSubmit={handleSubmit} />
-            {filterdJobs.map((job: Job) => (
-                <JobCard key={job.id} job={job} modal={modal} />
-            ))}
+            {isLoading ?
+                <Loader size="40px" /> :
+                <>
+                    {filterdJobs.map((job: Job) => (
+                        <JobCard key={job.id} job={job} modal={modal} />
+                    ))}
+                </>}
             <ModalContainer modal={modal} />
         </Box>
     )
