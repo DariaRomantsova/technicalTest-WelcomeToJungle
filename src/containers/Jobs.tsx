@@ -1,19 +1,16 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useCallback, useEffect, useState, useMemo } from "react";
-
-// @ts-ignore
 import { Box } from '@welcome-ui/box'
-// @ts-ignore
+import { Loader } from '@welcome-ui/loader'
 import { useModalState } from '@welcome-ui/modal';
 import { useDispatch, useSelector } from "react-redux";
-import { actions, selectIsLoading, selectJobsItems } from "../ducks/jobs";
 
+import { actions, selectIsLoading, selectJobsItems } from "../ducks/jobs";
 import { SearchBar } from "../components/common/SearchBar";
 import { FormInputs, Job } from "../helpers/types";
 import { ModalContainer } from "./ModalContainer";
 import { filterJobs } from "../helpers/jobsFilter";
 import { JobCard } from "../components/common/JobCard";
-import { Loader } from '@welcome-ui/loader'
+
 
 export const Jobs: React.FC = () => {
     const jobs = useSelector(selectJobsItems);
