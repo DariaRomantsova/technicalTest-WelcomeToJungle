@@ -1,8 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { Reducer } from 'redux';
 
 import { reducer } from '../jobs';
 
-export const rootReducer = () =>
+export const rootReducer = (): Reducer =>
   combineReducers({
     jobs: reducer,
   });
