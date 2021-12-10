@@ -1,4 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 
-export const getJobsList = ():Promise<AxiosResponse<any, any>> =>
-  axios.get('https://www.welcomekit.co/api/v1/embed?organization_reference=Pg4eV6k');
+import request from "../../helpers/request";
+
+
+export const getJobsList = (): Promise<AxiosResponse> => request.get('/v1/embed', {
+  params: {
+    organizationReference: 'Pg4eV6k'
+  }
+});

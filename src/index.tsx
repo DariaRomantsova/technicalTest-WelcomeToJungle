@@ -5,11 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './ducks/root';
+import { createTheme, WuiProvider } from '@welcome-ui/core';
+import { theme } from "./helpers/theme";
+
+const currentTheme = createTheme(theme);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+      <WuiProvider theme={currentTheme}>
+        <App />
+      </WuiProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

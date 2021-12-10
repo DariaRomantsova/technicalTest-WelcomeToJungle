@@ -1,6 +1,6 @@
-import { LooseObject } from "../helpers/types";
+import { LooseObject } from "./types";
 
-export const normalize = (data: Array<LooseObject>) =>
+export const normalize = (data: LooseObject[]): LooseObject =>
   data.reduce(
     (acc, current) => {
       acc.byId[current.id] = current;

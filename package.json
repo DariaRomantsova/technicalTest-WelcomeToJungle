@@ -49,6 +49,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "env": "cp .env.defaults .env",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

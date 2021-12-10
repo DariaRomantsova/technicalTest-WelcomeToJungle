@@ -9,7 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: rootReducer(),
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }, ).concat(
+    getDefaultMiddleware({ serializableCheck: false } ).concat(
       sagaMiddleware,
     ),
 });
