@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { jobsSlice } from '../jobs';
+import { reducer } from '../jobs';
 
 export const rootReducer = () =>
   combineReducers({
-    jobs: jobsSlice.reducer,
+    jobs: reducer,
   });
 
   export type AppState = ReturnType<typeof rootReducer>;

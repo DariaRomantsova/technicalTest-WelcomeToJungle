@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { normalize } from '../mapper';
+import { normalize } from '../../helpers/mapper';
 
 const initialState = {
   itemsById: {},
@@ -7,7 +7,7 @@ const initialState = {
   errors: {},
   isLoading: false,
   name: '',
-  selectedJob: 0,
+  selectedJob: null,
 };
 
 export const jobsSlice = createSlice({
