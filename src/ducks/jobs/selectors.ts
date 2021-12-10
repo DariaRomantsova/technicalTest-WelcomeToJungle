@@ -6,7 +6,7 @@ export const selectStoresItemsById = (state: RootState): LooseObject => state.jo
 export const selectStoresItemsIds = (state: RootState): JobId[] => state.jobs.itemsIds;
 
 
-export const selectStoresTableIsLoading = (state: RootState): boolean => state.jobs.isLoading;
+export const selectIsLoading = (state: RootState): boolean => state.jobs.isLoading;
 
 export const selectJobsItems = createSelector(
   selectStoresItemsById,
